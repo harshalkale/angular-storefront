@@ -1,0 +1,15 @@
+<ul class="p-4 flex flex-col fixed bottom-0 right-0 w-screen md:w-1/4">
+  <li
+    class="p-4 mt-4 w-full rounded flex justify-between items-center"
+    *ngFor="let toast of toasts; index as i"
+    [ngClass]="getClass(toast)"
+  >
+    <span class="pr-4">{{ toast.message }}</span>
+    <button
+      class="px-2 opacity-25 rounded-lg bg-gray-300 text-gray-900 focus:outline-none hover:opacity-50"
+      (click)="close(i)"
+    >
+      x
+    </button>
+  </li>
+</ul>

@@ -1,0 +1,30 @@
+<mat-sidenav-container class="w-screen h-screen bg-gray-200">
+  <mat-sidenav
+    mode="side"
+    [opened]="isSidebarOpened"
+    class="w-1/5 h-screen flex flex-col justify-center items-center bg-gray-900"
+  >
+    <div
+      class="w-full h-20 px-4 flex justify-between items-center border-b border-gray-800 text-gray-400"
+    >
+      <div class="flex self-stretch justify-start items-center">
+        <mat-icon class="w-auto h-auto text-4xl mr-2">account_box</mat-icon>
+        <span>{{ user?.email }}</span>
+      </div>
+      <button
+        class="py-2"
+        mat-stroked-button
+        color="warn"
+        (click)="logout()"
+        matTooltip="Logout"
+      >
+        <mat-icon class="w-auto h-auto text-4xl">power_settings_new</mat-icon>
+      </button>
+    </div>
+    <div class="p-2 border-b border-gray-800"></div>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <router-outlet></router-outlet>
+    <app-toast></app-toast>
+  </mat-sidenav-content>
+</mat-sidenav-container>
