@@ -1,19 +1,23 @@
 // This file can be replaced during build by using the `fileReplacements` array.
 // `ng build --prod` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
+import * as dotenv from 'dotenv';
+
+dotenv.config({
+  path: '../../.env.development',
+});
 
 export const environment = {
   production: false,
-  firebase: {
-    apiKey: 'AIzaSyAm7gVBgQsKLj_f52qQ5htHZZnhP1D_ihM',
-    authDomain: 'angular-crud-6f662.firebaseapp.com',
-    databaseURL: 'https://angular-crud-6f662.firebaseio.com',
-    projectId: 'angular-crud-6f662',
-    storageBucket: 'angular-crud-6f662.appspot.com',
-    messagingSenderId: '529208048684',
-    appId: '1:529208048684:web:c243e47fcc607180e9a589',
-    measurementId: 'G-7LDG01VLVR',
-  },
+  firebase: Object.keys(process.env).reduce((acc, key) => {
+    if (key.indexOf('FIREBASE_') >= 0) {
+      acc = {
+        ...acc,
+        [key]: process.env[key],
+      };
+    }
+    return acc;
+  }, {}),
 };
 
 /*
